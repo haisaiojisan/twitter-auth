@@ -12,6 +12,11 @@ describe TwitterAuth do
       TwitterAuth.base_url.should == 'https://example.com'
     end
 
+    it 'should otherwise load from the config[ca_file]' do
+      TwitterAuth.stub!(:config).and_return({'ca_file' => '/path/to/ca_file'})
+      TwitterAuth.consumer.options[:ca_file].should == '/path/to/ca_file'
+    end
+
     it 'should utilize oauth consumer settings' do
       @config = TwitterAuth.config
       TwitterAuth.stub!(:config).and_return(@config.merge('authorize_path' => '/somewhere_else'))
