@@ -61,7 +61,8 @@ module TwitterAuth
       :request_token_path,
       :access_token_path,
       :scheme,
-      :signature_method ].each do |oauth_option|
+      :signature_method,
+      :ca_file ].each do |oauth_option|
       options[oauth_option] = TwitterAuth.config[oauth_option.to_s] if TwitterAuth.config[oauth_option.to_s]
     end
 
